@@ -1,0 +1,26 @@
+{
+    "name": "gorlovka/proxy-request-builder",
+    "description": "building requests via proxy",
+    "type": "library",
+    "keywords": ["proxy", "bypass"],
+    "authors": [
+        {
+            "name": "hohohoho",
+            "email": "hohoho@kagda.ru"
+        }
+    ],
+    "license": "MIT",    
+    "scripts": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Gorlovka\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "5.4"
+        }
+    }
+
+}

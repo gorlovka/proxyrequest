@@ -1,4 +1,4 @@
-# Proxysoft - parsing website - bypass cloudflare or any custom made protection
+# Proxyrequest - parsing website - bypass cloudflare or any custom made protection
 
 If you are looking for a way to parse website which is protected by cloudflare or some other custom made solution you are in the right place. 
 

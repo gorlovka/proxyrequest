@@ -8,9 +8,12 @@ We handle all blocking from protection on our behalf.
 You get data like you were requesting them directly.
 
 This solution is good if you need to get web pages, images and any other files not bigger than 30MB at most.
-Not good if you need to download videos (not now, maybe in the future).
+Not good if you need to download videos (not now, maybe in the future). 
 
-Any javascript on requested page is not executed. You get the page as is.
+
+Any javascript on requested page is not executed. You get the page as is. So if website enabled under protection mode this solution won't work.
+This situation needs emulating browser which is resource taking and going to be expensive. Good news is that such delay for 5 seconds is not good for
+users so if they use it they shoot themselves in the foot. If you need passing such protection, please contact me too. Just keep in mind that it's not passed by current solution you see.
 
 ## Usage via GET request
 

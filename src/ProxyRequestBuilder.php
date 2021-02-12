@@ -42,6 +42,9 @@ class ProxyRequestBuilder
     private $userAgentUsed;
     private $cookiesUsed;
     private $refererUsed;
+    
+    private $responseCookies;
+    private $responseHeaders;
 
     /**
      * 
@@ -89,6 +92,24 @@ class ProxyRequestBuilder
     {
         return $this->refererUsed;
     }
+    
+    /**
+     * @return array
+     */
+    public function getResponseCookies()
+    {
+        return $this->responseCookies;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getResponseHeaders()
+    {
+        return $this->responseHeaders;
+    }
+    
+    
 
     public function getUrlFinal()
     {
@@ -173,8 +194,9 @@ class ProxyRequestBuilder
         $this->statusCode = $statusCode;
         $this->refererUsed = $value['refererUsed'];
         $this->cookiesUsed = $value['cookiesUsed'];
-
-
+        
+        $this->responseCookies = $value['cookies'];
+        $this->responseHeaders = $value['headers'];
 
         $contentInBase64 = $value['content'];
 

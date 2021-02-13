@@ -195,7 +195,6 @@ class ProxyRequestBuilder
         $this->refererUsed = $value['refererUsed'];
         $this->cookiesUsed = $value['cookiesUsed'];
         
-        $this->responseCookies = $value['cookies'];
         $this->responseHeaders = $value['headers'];
 
         $contentInBase64 = $value['content'];

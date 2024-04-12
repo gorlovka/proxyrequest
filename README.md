@@ -1,19 +1,15 @@
-# Proxyrequest - parsing website - bypass cloudflare or any custom made protection
+# Proxyrequest - Rotating proxy, Bypass Cloudflare, Free proxy lists
 
 If you are looking for a way to parse website which is protected by cloudflare or some other custom made solution you are in the right place. 
 
-Usually if you need to get a few dozens of pages from website you can go directry for webiste and scrape data easily.  Troubles comes if website has some kind of protection and you need to get a lot of data on regular basis.
+Usually if you need to get a few dozens of pages from website you can go directory for website and scrape data easily.  Issues comes if website has some kind of protection you need to get a lot of data on regular basis.
 
 We handle all blocking from protection on our behalf.
 You get data like you were requesting them directly.
 
-This solution is good if you need to get web pages, images and any other files not bigger than 30MB at most.
-Not good if you need to download videos (not now, maybe in the future). 
+This solution works for parsing and collection of data. It doesn't work for DDOS, spam sending or abusing internet.
 
-
-Any javascript on requested page is not executed. You get the page as is. So if website enabled under protection mode this solution won't work.
-This situation needs emulating browser which is resource taking and going to be expensive. Good news is that such delay for 5 seconds is not good for
-users so if they use it they shoot themselves in the foot. If you need passing such protection, please contact me too. Just keep in mind that it's not passed by current solution you see.
+Javascript is optionally executed if you need it. Essentially it's slower than just getting page as is so consider finding a way to get data without Javascript execution.
 
 ## Usage via GET request
 
@@ -60,7 +56,7 @@ users so if they use it they shoot themselves in the foot. If you need passing s
      *  you were requesting it directly
      */
     $content = $proxyBuilder->getContent();
-
+   
     That's all
 ```
 

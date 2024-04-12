@@ -9,6 +9,11 @@ namespace Gorlovka;
 class ProxyRequestBuilder
 {
 
+    const FORMAT_JSON ='json',
+        FORMAT_TXT='txt';
+
+    private  $format;
+
     private $urlToGet;
     private $token;
     private $messageErrorLast;

@@ -1,23 +1,21 @@
 <?php
 
-/*
- *   Created on: Jun 23, 2020   12:31:08 AM
- */
-
-namespace Gorlovka;
+namespace Proxyrequest;
 
 class ProxyRequestRotate
 {
 
-    const FORMAT_JSON ='json',
-        FORMAT_TXT='txt';
+    const FORMAT_JSON = 'json',
+        FORMAT_TXT = 'txt';
 
-    private  $format;
+    private $format;
+
+    private $server;
 
     private $urlToGet;
     private $token;
     private $messageErrorLast;
-    private $server;
+
 
     /**
      *
@@ -41,36 +39,41 @@ class ProxyRequestRotate
     /**
      *
      *  Returned in response from server
-     * 
+     *
      * @var string
      */
     private $userAgentUsed;
     private $cookiesUsed;
     private $refererUsed;
-    
+
     private $responseCookies;
     private $responseHeaders;
 
     /**
-     * 
-     * @param string $server
+     *
      * @param string $urlToGet
      * @param string $token
-     * @param string $isMobileOnlyUserAgent  any value is treated as yes, empty for no
+     * @param string $isMobileOnlyUserAgent any value is treated as yes, empty for no
      * @param [] $cookies
      * @param string $referer
      */
-    public function __construct($server, $urlToGet, $token,
+    public function __construct($urlToGet, $token,
                                 $isMobileOnlyUserAgent = '', $cookies = [],
                                 $referer = '')
     {
 
-        $this->server = $server;
+        $this->server = 'http://public.proxyrequest.ru';;
         $this->urlToGet = $urlToGet;
         $this->token = $token;
         $this->isMobileOnlyUserAgent = $isMobileOnlyUserAgent;
         $this->cookies = $cookies;
         $this->referer = $referer;
+    }
+
+    public function setServer($url)
+    {
+        $this->server = $url;
+        return $this;
     }
 
     public function getStatusCode()
@@ -97,7 +100,7 @@ class ProxyRequestRotate
     {
         return $this->refererUsed;
     }
-    
+
     /**
      * @return array
      */
@@ -105,7 +108,7 @@ class ProxyRequestRotate
     {
         return $this->responseCookies;
     }
-    
+
     /**
      * @return array
      */
@@ -113,29 +116,26 @@ class ProxyRequestRotate
     {
         return $this->responseHeaders;
     }
-    
-    
+
 
     public function getUrlFinal()
     {
         $urlEncoded = base64_encode($this->urlToGet);
 
-        $domain = $this->server;
+        $server = $this->server;
 
         $token = $this->token;
 
         $params = http_build_query([
-           'token' => $token,
-           'urlToGet' => $urlEncoded,
-           'isMobileOnlyUserAgent' => $this->isMobileOnlyUserAgent,
-           'cookies' => $this->cookies,
-           'referer' => $this->referer
+            'token' => $token,
+            'urlToGet' => $urlEncoded,
+            'isMobileOnlyUserAgent' => $this->isMobileOnlyUserAgent,
+            'cookies' => $this->cookies,
+            'referer' => $this->referer
         ]);
 
-        $urlFinal = "$domain/api/forwardRequestInParallelV2?$params";
+        $urlFinal = "$server/api/forwardRequestInParallelV2?$params";
 
-        
-        
 
         return $urlFinal;
     }
@@ -143,24 +143,23 @@ class ProxyRequestRotate
     /**
      * Returns false if request failed,
      *  check $messageErrorLast field  for more information
-     * 
-     * 
+     *
+     *
      * @staticvar int $timesTried
      * @return boolean|string
      */
     public function getContent()
     {
+        return '111';
+
         static $timesTried = 0;
-        
+
         $urlFinal = $this->getUrlFinal();
 
 
-        try
-        {
+        try {
             $dataInJson = file_get_contents($urlFinal);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
 
             if ($timesTried < 2) {
                 $timesTried++;
@@ -199,7 +198,7 @@ class ProxyRequestRotate
         $this->statusCode = $statusCode;
         $this->refererUsed = $value['refererUsed'];
         $this->cookiesUsed = $value['cookiesUsed'];
-        
+
         $this->responseHeaders = $value['headers'];
 
         $contentInBase64 = $value['content'];

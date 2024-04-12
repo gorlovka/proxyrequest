@@ -1,8 +1,8 @@
 <?php
 
 
-use Proxyrequest\ProxyRequestRotate;
 
-$proxyRequestRotate = new ProxyRequestRotate();
+
+$proxyRequestRotate = new \Proxyrequest\ProxyRequestRotate();
 
 echo $proxyRequestRotate->getContent();

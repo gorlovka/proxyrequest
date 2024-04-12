@@ -2,10 +2,16 @@ version: '3.8'
 
 services:
   proxyrequest:
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     build: .
-    ports:
-      - "8080:82"
-    volumes:
-      - ./src:/var/www/html
+    container_name: proxyrequest
 
-    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+
+    restart: "no"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

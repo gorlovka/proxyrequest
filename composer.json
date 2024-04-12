@@ -1,26 +1,34 @@
 {
-    "name": "gorlovka/proxy-request-builder",
-    "description": "building requests via proxy",
-    "type": "library",
-    "keywords": ["proxy", "bypass"],
-    "authors": [
-        {
-            "name": "hohohoho",
-            "email": "hohoho@kagda.ru"
-        }
-    ],
-    "license": "MIT",    
-    "scripts": {
-    },
-    "autoload": {
-        "psr-4": {
-            "Gorlovka\\": "src/"
-        }
-    },
-    "config": {
-        "platform": {
-            "php": "5.4"
-        }
+  "name": "gorlovka/proxy-request-builder",
+  "description": "building requests via proxy",
+  "type": "library",
+  "keywords": [
+    "cloudflare bypass",
+    "clouflare",
+    "proxy",
+    "free-proxy",
+    "scan-proxy",
+    "public-proxy",
+    "socks-proxy",
+    "http-proxy",
+    "proxy-list"
+  ],
+  "authors": [
+    {
+      "name": "Alex Sh",
+      "email": "suppport@proxyrequest.ru"
     }
-
+  ],
+  "scripts": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Proxyrequest\\": "src/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": ">=5.4"
+    }
+  }
 }

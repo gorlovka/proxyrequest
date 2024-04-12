@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  proxyrequest:
+    build: .
+    ports:
+      - "8080:82"
+    volumes:
+      - ./src:/var/www/html
+
+    restart: unless-stopped

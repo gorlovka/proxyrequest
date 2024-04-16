@@ -2,6 +2,7 @@
 
 namespace Proxyrequest;
 
+use Exception;
 use Proxyrequest\Conract\ProxyRequestInterface;
 use Proxyrequest\Response\ProxyResponse;
 
@@ -10,12 +11,6 @@ class ProxyRequestRotate implements ProxyRequestInterface
     const SERVER_PUBLIC = 'http://public.proxyrequest.ru';
 
     const TOKEN_PUBLIC = 'i_am_a_test_token_i_can_intentionally_parse_only_proxyrequest_ru';
-
-
-    const FORMAT_JSON = 'json',
-        FORMAT_TXT = 'txt';
-
-    private $format;
 
     /**
      * @var mixed|string
@@ -31,9 +26,6 @@ class ProxyRequestRotate implements ProxyRequestInterface
      * @var string
      */
     private $token;
-
-    private $messageErrorLast;
-
 
     /**
      *
@@ -72,37 +64,77 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $this->referer = $referer;
     }
 
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+
+    /**
+     * @param bool|string $isMobileOnlyUserAgent
+     */
+    public function setIsMobileOnlyUserAgent($isMobileOnlyUserAgent)
+    {
+        $this->isMobileOnlyUserAgent = $isMobileOnlyUserAgent;
+        return $this;
+    }
+
+    /**
+     * @param array|mixed $cookies
+     */
+    public function setCookies($cookies)
+    {
+        $this->cookies = $cookies;
+        return $this;
+    }
+
+    /**
+     * @param string $referer
+     */
+    public function setReferer($referer)
+    {
+        $this->referer = $referer;
+        return $this;
+    }
+
+
+    /**
+     *
+     *
+     * Use only if you have dedicated server for processing requests
+     * @param $url
+     * @return $this
+     */
     public function setServer($url)
     {
         $this->server = $url;
         return $this;
     }
 
-
     /**
-     * Returns false if request failed,
-     *  check $messageErrorLast field  for more information
      *
+     * Returns false if request failed
+     * On success returns ProxyResponse
      *
-     * @staticvar int $timesTried
-     * @return boolean|string
+     * @return false|ProxyResponse
      */
     public function sendRequest()
     {
         static $timesTried = 0;
 
-        if ($timesTried > 10) {
-            return new ProxyResponse([]);
-        }
 
         $urlFinal = $this->getUrlFinal();
 
         try {
             $dataInJson = file_get_contents($urlFinal);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
-            if ($timesTried < 2) {
+            if ($timesTried < 3) {
                 $timesTried++;
                 return $this->sendRequest();
             }
@@ -115,7 +147,7 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $proxyResponse = new ProxyResponse($dataInJson);
 
         if (!$proxyResponse->success) {
-            return $this->sendRequest();
+            return false;
         }
 
         return $proxyResponse;

@@ -1,6 +1,6 @@
 {
   "name": "gorlovka/proxy-request-builder",
-  "description": "building requests via proxy",
+  "description": "Sending requests via proxy",
   "type": "library",
   "keywords": [
     "cloudflare bypass",
@@ -19,6 +19,9 @@
       "email": "suppport@proxyrequest.ru"
     }
   ],
+  "require": {
+    "php": ">=5.4.0"
+  },
   "scripts": {
   },
   "autoload": {

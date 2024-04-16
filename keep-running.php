@@ -1,3 +1,3 @@
 <?php
 
-sleep(1000000);
+sleep(getrandmax());

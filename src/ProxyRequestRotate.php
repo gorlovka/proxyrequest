@@ -2,18 +2,36 @@
 
 namespace Proxyrequest;
 
-class ProxyRequestRotate
+use Proxyrequest\Conract\ProxyRequestInterface;
+use Proxyrequest\Response\ProxyResponse;
+
+class ProxyRequestRotate implements ProxyRequestInterface
 {
+    const SERVER_PUBLIC = 'http://public.proxyrequest.ru';
+
+    const TOKEN_PUBLIC = 'i_am_a_test_token_i_can_intentionally_parse_only_proxyrequest_ru';
+
 
     const FORMAT_JSON = 'json',
         FORMAT_TXT = 'txt';
 
     private $format;
 
+    /**
+     * @var mixed|string
+     */
     private $server;
 
+    /**
+     * @var string
+     */
     private $urlToGet;
+
+    /**
+     * @var string
+     */
     private $token;
+
     private $messageErrorLast;
 
 
@@ -24,30 +42,14 @@ class ProxyRequestRotate
     private $isMobileOnlyUserAgent;
 
     /**
-     *
-     * @var string
+     * @var array|mixed
      */
     private $cookies;
 
     /**
-     *
      * @var string
      */
     private $referer;
-    private $statusCode = null;
-
-    /**
-     *
-     *  Returned in response from server
-     *
-     * @var string
-     */
-    private $userAgentUsed;
-    private $cookiesUsed;
-    private $refererUsed;
-
-    private $responseCookies;
-    private $responseHeaders;
 
     /**
      *
@@ -57,12 +59,12 @@ class ProxyRequestRotate
      * @param [] $cookies
      * @param string $referer
      */
-    public function __construct($urlToGet, $token,
+    public function __construct($urlToGet, $token = self::TOKEN_PUBLIC,
                                 $isMobileOnlyUserAgent = '', $cookies = [],
-                                $referer = '')
+                                $referer = '', $server = '')
     {
 
-        $this->server = 'http://public.proxyrequest.ru';;
+        $this->server = $server ?: self::SERVER_PUBLIC;
         $this->urlToGet = $urlToGet;
         $this->token = $token;
         $this->isMobileOnlyUserAgent = $isMobileOnlyUserAgent;
@@ -76,49 +78,51 @@ class ProxyRequestRotate
         return $this;
     }
 
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
-    public function getMessageErrorLast()
-    {
-        return $this->messageErrorLast;
-    }
-
-    public function getUserAgentUsed()
-    {
-        return $this->userAgentUsed;
-    }
-
-    public function getCookiesUsed()
-    {
-        return $this->cookiesUsed;
-    }
-
-    public function getRefererUsed()
-    {
-        return $this->refererUsed;
-    }
 
     /**
-     * @return array
+     * Returns false if request failed,
+     *  check $messageErrorLast field  for more information
+     *
+     *
+     * @staticvar int $timesTried
+     * @return boolean|string
      */
-    public function getResponseCookies()
+    public function sendRequest()
     {
-        return $this->responseCookies;
+        static $timesTried = 0;
+
+        if ($timesTried > 10) {
+            return new ProxyResponse([]);
+        }
+
+        $urlFinal = $this->getUrlFinal();
+
+        try {
+            $dataInJson = file_get_contents($urlFinal);
+
+        } catch (\Exception $e) {
+
+            if ($timesTried < 2) {
+                $timesTried++;
+                return $this->sendRequest();
+            }
+
+            $timesTried = 0;
+
+            return false;
+        }
+
+        $proxyResponse = new ProxyResponse($dataInJson);
+
+        if (!$proxyResponse->success) {
+            return $this->sendRequest();
+        }
+
+        return $proxyResponse;
     }
 
-    /**
-     * @return array
-     */
-    public function getResponseHeaders()
-    {
-        return $this->responseHeaders;
-    }
 
-
-    public function getUrlFinal()
+    private function getUrlFinal()
     {
         $urlEncoded = base64_encode($this->urlToGet);
 
@@ -134,76 +138,9 @@ class ProxyRequestRotate
             'referer' => $this->referer
         ]);
 
-        $urlFinal = "$server/api/forwardRequestInParallelV2?$params";
-
+        $urlFinal = "$server/api/rotate/$token?$params";
 
         return $urlFinal;
-    }
-
-    /**
-     * Returns false if request failed,
-     *  check $messageErrorLast field  for more information
-     *
-     *
-     * @staticvar int $timesTried
-     * @return boolean|string
-     */
-    public function getContent()
-    {
-        return '111';
-
-        static $timesTried = 0;
-
-        $urlFinal = $this->getUrlFinal();
-
-
-        try {
-            $dataInJson = file_get_contents($urlFinal);
-        } catch (\Exception $e) {
-
-            if ($timesTried < 2) {
-                $timesTried++;
-                return $this->getContent();
-            }
-
-            $timesTried = 0;
-
-            return false;
-        }
-
-
-        $response = json_decode($dataInJson, true);
-
-
-        $this->messageErrorLast = $response['message'];
-
-        $value = $response['value'];
-
-        /**
-         * что-то не так на нашей стороне
-         */
-        if (!array_key_exists('statusCode', $value)) {
-            return false;
-        }
-
-
-        if (!$response['success']) {
-            return $this->getContent();
-        }
-
-        $statusCode = $value['statusCode'];
-
-
-        $this->userAgentUsed = $value['userAgentUsed'];
-        $this->statusCode = $statusCode;
-        $this->refererUsed = $value['refererUsed'];
-        $this->cookiesUsed = $value['cookiesUsed'];
-
-        $this->responseHeaders = $value['headers'];
-
-        $contentInBase64 = $value['content'];
-
-        return base64_decode($contentInBase64);
     }
 
 }

@@ -56,12 +56,12 @@ class ProxyRequestRotate implements ProxyRequestInterface
                                 $referer = '', $server = '')
     {
 
-        $this->server = $server ?: self::SERVER_PUBLIC;
         $this->urlToGet = $urlToGet;
         $this->token = $token;
         $this->isMobileOnlyUserAgent = $isMobileOnlyUserAgent;
         $this->cookies = $cookies;
         $this->referer = $referer;
+        $this->server = $server ?: self::SERVER_PUBLIC;
     }
 
     /**

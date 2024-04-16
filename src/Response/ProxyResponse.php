@@ -64,8 +64,10 @@ class ProxyResponse
      */
     public $primary_ip;
 
-
-    public $keys = [];
+    /**
+     * @var array
+     */
+    private $keys = [];
 
     public function __construct($dataInJson)
     {

@@ -65,6 +65,11 @@ class ProxyResponse
     public $primary_ip;
 
     /**
+     * @var string
+     */
+    public $messageErrorLast;
+
+    /**
      * @var array
      */
     private $keys = [];
@@ -74,6 +79,11 @@ class ProxyResponse
         $this->success = 0;
 
         $response = json_decode($dataInJson, true);
+
+        if (!$response) {
+            $this->messageErrorLast = $response;
+            return;
+        }
 
         foreach ($response as $key => $val) {
             $this->{$key} = $val;

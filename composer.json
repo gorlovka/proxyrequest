@@ -13,6 +13,7 @@
     "http-proxy",
     "proxy-list"
   ],
+  "license": "MIT",
   "authors": [
     {
       "name": "Alex Sh",
@@ -26,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Proxyrequest\\": "src/" 
+      "Proxyrequest\\": "src/"
     }
   }
 }

@@ -44,6 +44,11 @@ class ProxyRequestRotate implements ProxyRequestInterface
     private $referer;
 
     /**
+     * @var string
+     */
+    public $messageErrorLast;
+
+    /**
      *
      * @param string $urlToGet
      * @param string $token
@@ -141,12 +146,14 @@ class ProxyRequestRotate implements ProxyRequestInterface
 
             $timesTried = 0;
 
+            $this->messageErrorLast = 'Failed in try-catch statement';
             return false;
         }
 
         $proxyResponse = new ProxyResponse($dataInJson);
 
         if (!$proxyResponse->success) {
+            $this->messageErrorLast = 'Failed proxyresponse';
             return false;
         }
 

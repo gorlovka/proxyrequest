@@ -131,7 +131,6 @@ class ProxyRequestRotate implements ProxyRequestInterface
     {
         static $timesTried = 0;
 
-
         $urlFinal = $this->getUrlFinal();
 
         try {
@@ -143,8 +142,6 @@ class ProxyRequestRotate implements ProxyRequestInterface
                 $timesTried++;
                 return $this->sendRequest();
             }
-
-            $timesTried = 0;
 
             $this->messageErrorLast = 'Failed in try-catch statement';
             return false;

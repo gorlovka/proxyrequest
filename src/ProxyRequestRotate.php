@@ -153,8 +153,7 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $proxyResponse = new ProxyResponse($dataInJson);
 
         if (!$proxyResponse->success) {
-            $this->messageErrorLast = 'Failed proxyresponse';
-            return false;
+            $this->messageErrorLast = 'Failed proxyrequest status';
         }
 
         return $proxyResponse;

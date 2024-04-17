@@ -2,7 +2,7 @@
 
 use Proxyrequest\ProxyRequestRotate;
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 /**
  * Usage example

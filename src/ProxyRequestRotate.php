@@ -69,6 +69,7 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $this->server = $server ?: self::SERVER_PUBLIC;
     }
 
+
     /**
      * @param string $token
      */
@@ -105,7 +106,6 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $this->referer = $referer;
         return $this;
     }
-
 
     /**
      *

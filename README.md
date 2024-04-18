@@ -1,6 +1,13 @@
-# Proxyrequest - Rotating proxy, Bypass Cloudflare, Free proxy lists
+# # Proxyrequest - Proxy lists,  Rotating proxy, Bypass Cloudflare
 
-If you are looking for a way to parse website which is protected by cloudflare or some other custom made solution you are in the right place. 
+#### With this tool you can:
+1. Get proxy lists for parsing from API endpoint, curl or php
+1. Rotating proxy for parsing anything - proxy are being changed automatically until website returns proper content
+1. Parsing pages protected by Cloudflare from scraping
+
+#### Free plans available for each usage case
+
+If you are looking for a way to parse website which is protected by cloudflare or some other custom made solution you are in the right place.
 
 Usually if you need to get a few dozens of pages from website you can go directory for website and scrape data easily.  Issues comes if website has some kind of protection you need to get a lot of data on regular basis.
 
@@ -11,15 +18,45 @@ This solution works for parsing and collection of data. It doesn't work for DDOS
 
 Javascript is optionally executed if you need it. Essentially it's slower than just getting page as is so consider finding a way to get data without Javascript execution.
 
+------------
+
+
+
+### Free proxy lists
+
+### Inside browser
+[**Link to free proxy list**](http://public.proxyrequest.ru/api/proxyget/free "Click link to see")
+
+#### Curl example for getting free proxy lists:
+`curl http://public.proxyrequest.ru/api/proxyget/free`
+
+####  PHP getting free proxy lists:
+Run first composer command in your shell:
+`composer require gorlovka/proxy-request-builder`
+```php
+<?php
+
+use Proxyrequest\ProxyRequestGet;
+
+$proxyRequestGet = new ProxyRequestGet();
+echo $proxyRequestGet->sendRequest();
+```
+See TestProxyGet.php file for example.
+
+------------
+
+
+
+
 ## Usage via GET request
 
-   Just do GET request  using any programming language or from browser:
+Just do GET request  using any programming language or from browser:
 
     http://PROXY_SERVER_ADDRESS/api/forwardRequestInParallelV2?token=TOKEN_SECRET&urlToGet=urlEncodedInBase64
-    
-   That's all
 
-   In response you get JSON object:
+That's all
+
+In response you get JSON object:
 
     {
 	   "success":true,
@@ -69,13 +106,13 @@ Javascript is optionally executed if you need it. Essentially it's slower than j
 Each token is valid of parsing only single wesbite. So please specify me its address in email.
 
 ## Contacts
-Email for contacts is [jagen@meta.ua](mailto:jagen@meta.ua). I usually response with 12 hours or faster.  
+Email for contacts is [jagen@meta.ua](mailto:jagen@meta.ua). I usually response with 12 hours or faster.
 
 Specify in email a) address of targeted webite, b) whether you would like to get free key or subscribe, c) desired approximate number of requests per day/month
 
 
-## Russian 
-Email для получения токена и адреса севера jagen@meta.ua.  
+## Russian
+Email для получения токена и адреса севера jagen@meta.ua.
 
 Поле $content содержит такое же содержимое, как если бы запрашивали напрямую
 

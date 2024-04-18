@@ -1,7 +1,6 @@
 <?php
 
 use Proxyrequest\ProxyRequestGet;
-use Proxyrequest\ProxyRequestRotate;
 
 require '../vendor/autoload.php';
 

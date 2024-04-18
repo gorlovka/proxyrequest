@@ -69,9 +69,29 @@ Not publicly available. Available upon request. Possibility of it depends on how
 ## Getting token
 [**You can get token for FREE here**](https://proxyrequest.ru/request-token-view ". You can get **for FREE** here")
 
+There are three kind of tokens:
 
-## By using service you agree:
-To use these proxies responsibly, without abusing them, and without intent to DDoS any resources.
+
+Paid token removes time limits in accessing to proxy lists.
+Allows filter by type, country, ip mask, last check, speed, level.
+
+
+## Token specifics
+You should use these proxies responsibly, without abusing them, and without intent to commit illegal activity.
+
+There are three kind of tokens:
+1. **Proxy lists**
+   Paid token removes time limits in accessing to proxy lists. Allows filter by type, country, ip mask, last check, speed, level.
+
+1. **Rotating proxy**
+   Software built upon proxy lists. Which consumes target url to be parsed and it manages to get content from website upon your request.
+   Paid token allows here to do such requests. Free testing period available.
+
+1. **Bypassing cloudflare**(any other protection) for parsing
+   Software on our side goes to specified url which is behind protection and gives you content of it back. Free testing period available
+
+We have no limits on traffic. If you have big count of requests it's possible to provide dedicated resources just for you.
+
 
 ## Contacts
 Email for contacts is [support@proxyrequest.ru](mailto:support@proxyrequest.ru).

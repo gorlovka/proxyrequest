@@ -1,4 +1,4 @@
-# # Proxyrequest - Proxy lists,  Rotating proxy, Bypass Cloudflare
+# Proxyrequest - Proxy lists,  Rotating proxy, Bypass Cloudflare
 
 #### With this tool you can:
 1. Get proxy lists for parsing from API endpoint, curl or php
@@ -70,8 +70,8 @@ Not publicly available. Available upon request. Possibility of it depends on how
 [**You can get token for FREE here**](https://proxyrequest.ru/request-token-view ". You can get **for FREE** here")
 
 
-## Token specifics
-You should use these proxies responsibly, without abusing them, and without intent to commit illegal activity.
+## By using service you agree:
+To use these proxies responsibly, without abusing them, and without intent to DDoS any resources.
 
 ## Contacts
 Email for contacts is [support@proxyrequest.ru](mailto:support@proxyrequest.ru).

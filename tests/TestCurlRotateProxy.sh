@@ -5,6 +5,6 @@ URL_TO_GET=`base64 <<< ${2:-'http://testpage.proxyrequest.ru/iamatestpage.html'}
 
 SERVER_ADDRESS=${3:-'http://public.proxyrequest.ru'}
 
-echo curl -X GET \
+curl -X GET \
   "${SERVER_ADDRESS}/api/rotate/${TOKEN}?urlToGet=${URL_TO_GET}" \
   -H 'Content-Type: application/json'

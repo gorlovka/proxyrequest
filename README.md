@@ -24,13 +24,13 @@ Javascript is optionally executed if you need it. Essentially it's slower than j
 
 ### Free proxy lists
 
-### Inside browser
+### 1. Inside browser
 [**Link to free proxy list**](http://public.proxyrequest.ru/api/proxyget/free "Click link to see")
 
-#### Curl example for getting free proxy lists:
+####2. Using curl:
 `curl http://public.proxyrequest.ru/api/proxyget/free`
 
-####  PHP getting free proxy lists:
+#### 3. PHP composer package:
 Run first composer command in your shell:
 `composer require gorlovka/proxy-request-builder`
 ```php
@@ -44,7 +44,31 @@ echo $proxyRequestGet->sendRequest();
 See TestProxyGet.php file for example.
 
 ------------
+### Rotating proxy
+###1. Inside browser
+[Link to url](http:/public.proxyrequest.ru/api/rotate/PRIVATE_TOKEN?urlToGet=http://ar61.ru "Link to url")
 
+###2. Using curl
+`bash tests/TestCurlRotateProxy.sh`
+
+###3. PHP composer package
+Run first composer command in your shell:
+`composer require gorlovka/proxy-request-builder`
+```php
+<?php
+
+use Proxyrequest\ProxyRequestRotate;
+
+$proxyRequestRotate = new ProxyRequestRotate('URL_TO_GET', 'PRIVATE_TOKEN_KEY_HERE');
+/***
+ * To be called to use private server instead of public by default
+ */
+// $proxyRequestRotate->setServer('');
+
+echo $proxyRequestRotate->sendRequest();
+```
+
+[Link to url](http:/public.proxyrequest.ru/api/rotate/PRIVATE_TOKEN?urlToGet=http://ar61.ru "Link to url")
 
 
 

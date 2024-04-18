@@ -7,9 +7,9 @@ require '../vendor/autoload.php';
 /**
  * Usage example
  */
-$proxyRequestRotate = new ProxyRequestRotate('http://', 'example_of_token_BGFkldfc6gbds456gSmg5nghs79hSmndsF375sd0H4866');
+$proxyRequestRotate = new ProxyRequestRotate('http://ar61.ru', 'PRIVATE_TOKEN_KEY_HERE');
 /***
- * To be called to use private server
+ * To be called to use private server instead of public by default
  */
 // $proxyRequestRotate->setServer('');
 

@@ -26,7 +26,7 @@ Javascript is optionally executed if you need it. Essentially it's slower than j
 ### 1. Inside browser
 [**Link to free proxy list**](http://public.proxyrequest.ru/api/proxyget/free "Click link to see")
 
-####2. Using curl:
+#### 2. Using curl:
 `curl http://public.proxyrequest.ru/api/proxyget/free`
 
 #### 3. PHP composer package:
@@ -44,13 +44,13 @@ See TestProxyGet.php file for example.
 
 ------------
 ### Rotating proxy
-###1. Inside browser
+### 1. Inside browser
 [Link to url](http:/public.proxyrequest.ru/api/rotate/PRIVATE_TOKEN?urlToGet=http://ar61.ru "Link to url")
 
-###2. Using curl
+### 2. Using curl
 `bash tests/TestCurlRotateProxy.sh`
 
-###3. PHP composer package
+### 3. PHP composer package
 Run first composer command in your shell:
 `composer require gorlovka/proxy-request-builder`
 ```php

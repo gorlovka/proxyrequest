@@ -5,13 +5,6 @@ use Proxyrequest\ProxyRequestGet;
 require '../vendor/autoload.php';
 
 /**
- * Usage example simple
- */
-$proxyRequestGet = new ProxyRequestGet();
-
-//echo $proxyRequestGet->sendRequest();
-
-/**
  *
  * Usage example with parameters,
  * Filtering is available with private token

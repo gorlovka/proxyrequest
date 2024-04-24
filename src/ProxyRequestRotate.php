@@ -69,6 +69,41 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $this->server = $server ?: self::SERVER_PUBLIC;
     }
 
+    /**
+     *
+     * Returns false if request failed
+     * On success returns ProxyResponse
+     *
+     * @return false|ProxyResponse
+     */
+    public function sendRequest()
+    {
+        static $timesTried = 0;
+
+        $urlFinal = $this->getUrlFinal();
+
+        try {
+            $dataInJson = file_get_contents($urlFinal);
+
+        } catch (Exception $e) {
+
+            if ($timesTried < 3) {
+                $timesTried++;
+                return $this->sendRequest();
+            }
+
+            $this->messageErrorLast = 'Failed in try-catch statement';
+            return false;
+        }
+
+        $proxyResponse = new ProxyResponse($dataInJson);
+
+        if (!$proxyResponse->success) {
+            $this->messageErrorLast = 'Failed proxyrequest status';
+        }
+
+        return $proxyResponse;
+    }
 
     /**
      * @param string $token
@@ -119,43 +154,6 @@ class ProxyRequestRotate implements ProxyRequestInterface
         $this->server = $url;
         return $this;
     }
-
-    /**
-     *
-     * Returns false if request failed
-     * On success returns ProxyResponse
-     *
-     * @return false|ProxyResponse
-     */
-    public function sendRequest()
-    {
-        static $timesTried = 0;
-
-        $urlFinal = $this->getUrlFinal();
-
-        try {
-            $dataInJson = file_get_contents($urlFinal);
-
-        } catch (Exception $e) {
-
-            if ($timesTried < 3) {
-                $timesTried++;
-                return $this->sendRequest();
-            }
-
-            $this->messageErrorLast = 'Failed in try-catch statement';
-            return false;
-        }
-
-        $proxyResponse = new ProxyResponse($dataInJson);
-
-        if (!$proxyResponse->success) {
-            $this->messageErrorLast = 'Failed proxyrequest status';
-        }
-
-        return $proxyResponse;
-    }
-
 
     private function getUrlFinal()
     {

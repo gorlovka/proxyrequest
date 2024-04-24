@@ -7,7 +7,7 @@
 namespace Proxyrequest;
 
 /**
- * @TODO
+ * @TODO public convenient client to be implemented
  */
 class ProxyRequestCloudflare
 {

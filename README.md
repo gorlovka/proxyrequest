@@ -69,9 +69,7 @@ Not publicly available. Available upon request. Possibility of it depends on how
 ## Getting Token
 Currently, there are three types of tokens
 1. #### [**Proxy lists free token**](https://proxyrequest.ru/en/request-token-view/free-proxy-list) is here
-
 1. #### [**Rotating proxy free token**](https://proxyrequest.ru/en/request-token-view/rotating-proxy) is here
-
 1. Cloudflare token (to be released soon)
 
 

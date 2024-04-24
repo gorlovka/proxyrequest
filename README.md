@@ -66,14 +66,17 @@ echo $proxyRequestRotate->sendRequest();
 Not publicly available. Available upon request. Possibility of it depends on how it's configured on exact website. Feel free to get in touch mentioning the address of website and how many pages per day is it needed to collect.
 
 
-## Getting token
-[**You can get token for FREE here**](https://proxyrequest.ru/request-token-view ". You can get **for FREE** here")
+## Getting Token
+Currently, there are three types of tokens
+1. #### [**Proxy lists free token**](https://proxyrequest.ru/en/request-token-view/free-proxy-list) is here
 
-There are three kind of tokens:
+1. #### [**Rotating proxy free token**](https://proxyrequest.ru/en/request-token-view/rotating-proxy) is here
+
+1. Cloudflare token (to be released soon)
 
 
-Paid token removes time limits in accessing to proxy lists.
-Allows filter by type, country, ip mask, last check, speed, level.
+Private token removes time limits in accessing to proxy lists.
+Allows filtering. New features may be added upon request.
 
 
 ## Token specifics

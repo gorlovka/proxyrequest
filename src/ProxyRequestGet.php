@@ -70,6 +70,12 @@ class ProxyRequestGet implements ProxyRequestInterface
     private $portProxy;
 
     /**
+     *  json|csv|''
+     * @var string
+     */
+    private $format;
+
+    /**
      * @param string $token
      * @param string $server
      */
@@ -90,7 +96,8 @@ class ProxyRequestGet implements ProxyRequestInterface
             'not_country_code_raw' => $this->notCountryCodeRaw,
             'http' => $this->http,
             'socks' => $this->socks,
-            'port_proxy' => $this->portProxy
+            'port_proxy' => $this->portProxy,
+            'format' => $this->format
         ]);
 
         $urlFinal = "{$this->server}/api/proxyget/{$this->token}?{$query}";
@@ -139,7 +146,6 @@ class ProxyRequestGet implements ProxyRequestInterface
 
     /**
      *
-     *
      * @param mixed $http 1 or 0
      * @return ProxyRequestGet
      */
@@ -174,6 +180,16 @@ class ProxyRequestGet implements ProxyRequestInterface
     public function setPortProxy($portProxy)
     {
         $this->portProxy = $portProxy;
+        return $this;
+    }
+
+    /**
+     * @param string $format
+     * @return $this
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
         return $this;
     }
 

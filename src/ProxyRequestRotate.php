@@ -52,21 +52,23 @@ class ProxyRequestRotate implements ProxyRequestInterface
      *
      * @param string $urlToGet
      * @param string $token
+     * @param string $server
      * @param string $isMobileOnlyUserAgent any value is treated as yes, empty for no
-     * @param [] $cookies
+     * @param array $cookies
      * @param string $referer
      */
-    public function __construct($urlToGet, $token = self::TOKEN_PUBLIC,
+    public function __construct($urlToGet, $token = self::TOKEN_PUBLIC, $server = '',
                                 $isMobileOnlyUserAgent = '', $cookies = [],
-                                $referer = '', $server = '')
+                                $referer = '')
     {
 
         $this->urlToGet = $urlToGet;
         $this->token = $token;
+        $this->server = $server ?: self::SERVER_PUBLIC;
+
         $this->isMobileOnlyUserAgent = $isMobileOnlyUserAgent;
         $this->cookies = $cookies;
         $this->referer = $referer;
-        $this->server = $server ?: self::SERVER_PUBLIC;
     }
 
     /**
